@@ -1,0 +1,47 @@
+{
+  "source_account": "GC27EIWNDNLD2HO5PGJU3P7M66SCT3PSD2IH4FXZYKCSY3TTMAJND6MA",
+  "operations": [
+    {
+      "source_account": null,
+      "body": {
+        "invoke_host_function": {
+          "host_function": {
+            "invoke_contract": {
+              "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+              "function_name": "increment",
+              "args": []
+            }
+          },
+          "auth": [
+            {
+              "credentials": {
+                "address": {
+                  "address": "GBDZXYMJ3SLYXCZ3IY5AY32FGIT6KQB3VHG3DX5UYSURLZTP4WSANAPC",
+                  "nonce": 2273365783831722200,
+                  "signature_expiration_ledger": 0,
+                  "signature": "void"
+                }
+              },
+              "root_invocation": {
+                "function": {
+                  "contract_fn": {
+                    "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+                    "function_name": "increment",
+                    "args": []
+                  }
+                },
+                "sub_invocations": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "signatures": [
+    {
+      "hint": "736012d1",
+      "signature": "ddb00f8e1331263614b8cf841972154659d43f18111c253eb41ef3064fad7e880587696b24160fa210d7833f0ead2e9e15c5dd12801ebfe0d1716c8e214a3c0b"
+    }
+  ]
+}

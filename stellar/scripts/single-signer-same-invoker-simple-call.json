@@ -1,0 +1,40 @@
+{
+  "source_account": "GBDZXYMJ3SLYXCZ3IY5AY32FGIT6KQB3VHG3DX5UYSURLZTP4WSANAPC",
+  "operations": [
+    {
+      "source_account": null,
+      "body": {
+        "invoke_host_function": {
+          "host_function": {
+            "invoke_contract": {
+              "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+              "function_name": "increment",
+              "args": []
+            }
+          },
+          "auth": [
+            {
+              "credentials": "source_account",
+              "root_invocation": {
+                "function": {
+                  "contract_fn": {
+                    "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+                    "function_name": "increment",
+                    "args": []
+                  }
+                },
+                "sub_invocations": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "signatures": [
+    {
+      "hint": "6fe5a406",
+      "signature": "10e44f76688208c8d940b2a901888b7665ff8995ab5a911646b975608da1831ac2e85dd2baf9bf51695a94d231c7eca56f88f198deead9340004a128e80dcb0d"
+    }
+  ]
+}
