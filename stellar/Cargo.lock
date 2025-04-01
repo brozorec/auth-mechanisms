@@ -260,6 +260,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 
 [[package]]
+name = "counter"
+version = "0.0.0"
+dependencies = [
+ "soroban-sdk",
+]
+
+[[package]]
 name = "cpufeatures"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -277,14 +284,6 @@ dependencies = [
  "serde",
  "serde_derive",
  "serde_json",
-]
-
-[[package]]
-name = "cross-call"
-version = "0.0.0"
-dependencies = [
- "single-owner",
- "soroban-sdk",
 ]
 
 [[package]]
@@ -757,7 +756,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
-name = "multi-owners"
+name = "multi"
 version = "0.0.0"
 dependencies = [
  "soroban-sdk",
@@ -1071,13 +1070,6 @@ checksum = "77549399552de45a898a580c1b41d445bf730df867cc44e6c0233bbc4b8329de"
 dependencies = [
  "digest",
  "rand_core",
-]
-
-[[package]]
-name = "single-owner"
-version = "0.0.0"
-dependencies = [
- "soroban-sdk",
 ]
 
 [[package]]
@@ -1600,6 +1592,14 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
+
+[[package]]
+name = "wrapper"
+version = "0.0.0"
+dependencies = [
+ "counter",
+ "soroban-sdk",
+]
 
 [[package]]
 name = "zerocopy"

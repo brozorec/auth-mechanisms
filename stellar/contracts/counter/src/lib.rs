@@ -5,10 +5,10 @@ pub const OWNER: Symbol = symbol_short!("OWNER");
 pub const COUNTER: Symbol = symbol_short!("COUNTER");
 
 #[contract]
-pub struct SingleOwnerContract;
+pub struct CounterContract;
 
 #[contractimpl]
-impl SingleOwnerContract {
+impl CounterContract {
     pub fn __constructor(e: Env, owner: Address) {
         e.storage().instance().set(&OWNER, &owner);
     }

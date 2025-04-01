@@ -6,7 +6,7 @@ members = [
 
 [workspace.dependencies]
 soroban-sdk = "22.0.6"
-single-owner = { path = "contracts/single-owner" }
+counter = { path = "contracts/counter" }
 
 [profile.release]
 opt-level = "z"

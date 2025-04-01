@@ -1,0 +1,113 @@
+{
+  "source_account": "GCMQMWOWPQTGMXMMVRTGTCHQR5RSKUOM2SDSRB7E3RMVMHEBA3TB6V7M",
+  "operations": [
+    {
+      "source_account": null,
+      "body": {
+        "invoke_host_function": {
+          "host_function": {
+            "invoke_contract": {
+              "contract_address": "CBG2XMEQB2FUVRRCCAQDAPYHLPANREP6YMTCSF6ZSYLJLIBAGEZAMPFX",
+              "function_name": "increment",
+              "args": []
+            }
+          },
+          "auth": [
+            {
+              "credentials": {
+                "address": {
+                  "address": "GBDZXYMJ3SLYXCZ3IY5AY32FGIT6KQB3VHG3DX5UYSURLZTP4WSANAPC",
+                  "nonce": 1618961378721762600,
+                  "signature_expiration_ledger": 221505,
+                  "signature": {
+                    "vec": [
+                      {
+                        "map": [
+                          {
+                            "key": {
+                              "symbol": "public_key"
+                            },
+                            "val": {
+                              "bytes": "479be189dc978b8b3b463a0c6f453227e5403ba9cdb1dfb4c4a915e66fe5a406"
+                            }
+                          },
+                          {
+                            "key": {
+                              "symbol": "signature"
+                            },
+                            "val": {
+                              "bytes": "b8ec7e4eea53de32dd09d8e04e9a2c024c71c1f7f7a43f0e83215625b702d852d8b85bdd919e7e325424b08ea6d7ee350cd506ee26ad12df86ddf88897edf80d"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "root_invocation": {
+                "function": {
+                  "contract_fn": {
+                    "contract_address": "CBG2XMEQB2FUVRRCCAQDAPYHLPANREP6YMTCSF6ZSYLJLIBAGEZAMPFX",
+                    "function_name": "increment",
+                    "args": []
+                  }
+                },
+                "sub_invocations": []
+              }
+            },
+            {
+              "credentials": {
+                "address": {
+                  "address": "GC27EIWNDNLD2HO5PGJU3P7M66SCT3PSD2IH4FXZYKCSY3TTMAJND6MA",
+                  "nonce": 635716879126928500,
+                  "signature_expiration_ledger": 221505,
+                  "signature": {
+                    "vec": [
+                      {
+                        "map": [
+                          {
+                            "key": {
+                              "symbol": "public_key"
+                            },
+                            "val": {
+                              "bytes": "b5f222cd1b563d1ddd79934dbfecf7a429edf21e907e16f9c2852c6e736012d1"
+                            }
+                          },
+                          {
+                            "key": {
+                              "symbol": "signature"
+                            },
+                            "val": {
+                              "bytes": "58446fe8a98b62f2448e1278eac2360775f8ae178eb665f29e736486d971c489c127b25855c77c7603dab7ea814b88bc997c7f875d17bd399b954a3d6c339906"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "root_invocation": {
+                "function": {
+                  "contract_fn": {
+                    "contract_address": "CBG2XMEQB2FUVRRCCAQDAPYHLPANREP6YMTCSF6ZSYLJLIBAGEZAMPFX",
+                    "function_name": "increment",
+                    "args": []
+                  }
+                },
+                "sub_invocations": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "signatures": [
+    {
+      "hint": "8106e61f",
+      "signature": "1c1b68a831731b287d6a994c60e2622cc089459d659eb9f84b17669e5cddf983c474039df016ff10a3588dab391ea033f0f8d2bf6b6e45cc085955eb5802b80c"
+    }
+  ]
+}

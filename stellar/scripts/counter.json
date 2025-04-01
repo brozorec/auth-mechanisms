@@ -7,7 +7,7 @@
         "invoke_host_function": {
           "host_function": {
             "invoke_contract": {
-              "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+              "contract_address": "CDYW676XIE5OPWRNRAY7Y2JEZJRVFKNWGPQTLOEYKPJAIPKLE4X725YK",
               "function_name": "increment",
               "args": []
             }
@@ -18,7 +18,7 @@
               "root_invocation": {
                 "function": {
                   "contract_fn": {
-                    "contract_address": "CBOAM3OHMAVHYSVMS2UDZOJJGEJVNFK3TDTM3M3DLGF76OTYDGISFD3B",
+                    "contract_address": "CDYW676XIE5OPWRNRAY7Y2JEZJRVFKNWGPQTLOEYKPJAIPKLE4X725YK",
                     "function_name": "increment",
                     "args": []
                   }
@@ -34,7 +34,7 @@
   "signatures": [
     {
       "hint": "6fe5a406",
-      "signature": "10e44f76688208c8d940b2a901888b7665ff8995ab5a911646b975608da1831ac2e85dd2baf9bf51695a94d231c7eca56f88f198deead9340004a128e80dcb0d"
+      "signature": "51430c4855a5ccee8c5be3ec39b0be1a300c66a9f95c402afe485f7663768943c981384be0fb82834aa0cbb03fdc493779622720cde3c41f4779398f1bd55005"
     }
   ]
 }

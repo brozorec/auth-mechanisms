@@ -1,0 +1,74 @@
+{
+  "source_account": "GC27EIWNDNLD2HO5PGJU3P7M66SCT3PSD2IH4FXZYKCSY3TTMAJND6MA",
+  "operations": [
+    {
+      "source_account": null,
+      "body": {
+        "invoke_host_function": {
+          "host_function": {
+            "invoke_contract": {
+              "contract_address": "CAHJRPRPOHLXEM7JEFIJG3B2BZSPLVJNJG6TBI7ZSNP7IAFEXXROXD53",
+              "function_name": "cross_call_increment",
+              "args": [
+                {
+                  "address": "CDYW676XIE5OPWRNRAY7Y2JEZJRVFKNWGPQTLOEYKPJAIPKLE4X725YK"
+                }
+              ]
+            }
+          },
+          "auth": [
+            {
+              "credentials": {
+                "address": {
+                  "address": "GBDZXYMJ3SLYXCZ3IY5AY32FGIT6KQB3VHG3DX5UYSURLZTP4WSANAPC",
+                  "nonce": 147576649,
+                  "signature_expiration_ledger": 221506,
+                  "signature": {
+                    "vec": [
+                      {
+                        "map": [
+                          {
+                            "key": {
+                              "symbol": "public_key"
+                            },
+                            "val": {
+                              "bytes": "479be189dc978b8b3b463a0c6f453227e5403ba9cdb1dfb4c4a915e66fe5a406"
+                            }
+                          },
+                          {
+                            "key": {
+                              "symbol": "signature"
+                            },
+                            "val": {
+                              "bytes": "854a091d529d6f5f60532360d0b83d8ec55bd207c88963985cfecb0097b2aa17a2e6d2c664aa4c08c67f7765f891bda70cbbcd0126abba6bf4fd489b069b1008"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "root_invocation": {
+                "function": {
+                  "contract_fn": {
+                    "contract_address": "CDYW676XIE5OPWRNRAY7Y2JEZJRVFKNWGPQTLOEYKPJAIPKLE4X725YK",
+                    "function_name": "increment",
+                    "args": []
+                  }
+                },
+                "sub_invocations": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "signatures": [
+    {
+      "hint": "736012d1",
+      "signature": "1c7d57a24f88020f3ed56a92de2d645fd7c709237691c9e0a2c727fbe4c7451cd27745f6d893016c4c80964a864939a4808d306bd2b0d37653e58086b60ac30c"
+    }
+  ]
+}

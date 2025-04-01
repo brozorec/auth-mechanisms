@@ -6,10 +6,10 @@ pub const OWNER_2: Symbol = symbol_short!("OWNER_2");
 pub const COUNTER: Symbol = symbol_short!("COUNTER");
 
 #[contract]
-pub struct Contract;
+pub struct MultiContract;
 
 #[contractimpl]
-impl Contract {
+impl MultiContract {
     pub fn __constructor(e: &Env, owner_1: Address, owner_2: Address) {
         e.storage().instance().set(&OWNER_1, &owner_1);
         e.storage().instance().set(&OWNER_2, &owner_2);
