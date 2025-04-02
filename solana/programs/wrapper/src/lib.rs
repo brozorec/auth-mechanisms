@@ -9,7 +9,7 @@ pub mod wrapper {
 
     use super::*;
 
-    pub fn cross_call(ctx: Context<CounterOp>) -> Result<()> {
+    pub fn cross_call_increment(ctx: Context<CounterOp>) -> Result<()> {
         let cpi_ctx = CpiContext::new(
             ctx.accounts.counter.to_account_info(),
             Increment {

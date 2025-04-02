@@ -12,7 +12,7 @@ import { getPubKeys, connection, log } from "./helpers";
   const counterProgram = anchor.workspace.Counter as Program<Counter>;
   const wrapperProgram = anchor.workspace.Wrapper as Program<Wrapper>;
 
-  const { owner } = await getPubKeys();
+  const { owner, sponsor } = await getPubKeys();
 
   const seeds = [];
   const [counterStorage, _bump] = web3.PublicKey.findProgramAddressSync(
@@ -21,7 +21,7 @@ import { getPubKeys, connection, log } from "./helpers";
   );
 
   const transaction = new web3.Transaction().add(
-    wrapperProgram.instruction.crossCall({
+    wrapperProgram.instruction.crossCallIncrement({
       accounts: {
         counter: counterProgram.programId, 
         counterStorage,
@@ -32,9 +32,11 @@ import { getPubKeys, connection, log } from "./helpers";
 
   const { blockhash } = await connection.getRecentBlockhash();
   transaction.recentBlockhash = blockhash;
-  transaction.feePayer = owner.publicKey;
+  transaction.feePayer = sponsor.publicKey;
 
   transaction.partialSign(owner);
+
+  transaction.partialSign(sponsor);
 
   const tx = await connection.sendRawTransaction(
     transaction.serialize()
