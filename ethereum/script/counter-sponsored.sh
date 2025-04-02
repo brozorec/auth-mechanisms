@@ -10,9 +10,13 @@ SIGNED_AUTH=$(cast wallet sign-auth $DELEGATE_CONTRACT --private-key $OWNER_PK)
 cast send --quiet $OWNER_ADDRESS "execute((bytes,address,uint256)[])" "[("0x",$(cast az),0)]" --private-key $SENDER_PK --auth $SIGNED_AUTH
 #cast code $OWNER_ADDRESS
 
-COUNTER_CONTRACT=$(forge create Counter --private-key $SENDER_PK --broadcast --constructor-args $OWNER_ADDRESS | awk '/Deployed to: / {addr=$3} END {print addr}')
-echo "Counter Contract deployed to: $COUNTER_CONTRACT"
+#COUNTER_CONTRACT=$(forge create Counter --private-key $SENDER_PK --broadcast --constructor-args $OWNER_ADDRESS | awk '/Deployed to: / {addr=$3} END {print addr}')
+#echo "Counter Contract deployed to: $COUNTER_CONTRACT"
 
-cast send $OWNER_ADDRESS "execute((bytes,address,uint256)[])" "[($(cast sig 'increment()'),$COUNTER_CONTRACT,0)]" --private-key $SENDER_PK -- --broadcast | awk '/transactionHash/ {hash=$2} END {print hash}' | xargs cast tx --json > script/counter-sponsor-tx-output.json
+#read from .counter_addr
+COUNTER_CONTRACT=$(cat script/.counter_addr)
+echo "Loaded Counter Contract: $COUNTER_CONTRACT"
 
-cast call $COUNTER_CONTRACT "counter()"
+cast send $OWNER_ADDRESS "execute((bytes,address,uint256)[])" "[($(cast sig 'increment()'),$COUNTER_CONTRACT,0)]" --private-key $SENDER_PK -- --broadcast | awk '/transactionHash/ {hash=$2} END {print hash}' | xargs cast tx --json > script/counter-sponsored.json
+
+#cast call $COUNTER_CONTRACT "counter()"

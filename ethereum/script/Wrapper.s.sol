@@ -18,8 +18,8 @@ contract WrapperScript is Script {
         vm.startBroadcast(alicePk);
 
         counter = new Counter(alice);
-        wrapper = new Wrapper(counter);
-        wrapper.crossCallIncrement();
+        wrapper = new Wrapper();
+        wrapper.crossCallIncrement(address(counter));
 
         vm.stopBroadcast();
         VmSafe.BroadcastTxSummary memory summary = vm.getBroadcast("Wrapper", 0x7a69, VmSafe.BroadcastTxType.Call);

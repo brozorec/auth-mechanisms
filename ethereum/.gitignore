@@ -14,3 +14,4 @@ docs/
 .env
 
 soljson-latest.js
+.counter_addr
