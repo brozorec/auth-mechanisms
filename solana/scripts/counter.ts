@@ -27,7 +27,7 @@ import { getPubKeys, connection, log } from "./helpers";
     .signers([owner])
     .rpc();
 
-  console.log(`Counter initialized at: ${counterStorage}`);
+  console.log(`Counter Storage initialized at: ${counterStorage}`);
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   console.log("Incrementing counter...");
