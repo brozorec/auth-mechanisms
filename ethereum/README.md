@@ -1,66 +1,24 @@
-## Foundry
+## Ethereum
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Use [foundry](https://book.getfoundry.sh/) to build and run smart contracts in this subfolder.
 
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
+1. Make sure foundry is up to date
 ```shell
-$ forge build
+foundryup
 ```
-
-### Test
-
+2. Start local anvil node with Odyssey features enabled (required for Pectra-enabled features such as EIP-7702)
 ```shell
-$ forge test
+anvil --odyssey
 ```
-
-### Format
-
+3. From another shell session, run the `Counter` example
 ```shell
-$ forge fmt
+bash scripts/counter.sh
 ```
-
-### Gas Snapshots
-
+- You'll find the transaction output saved at `scripts/counter.json`.
+4. Run the `Counter` example with fee sponsorship
 ```shell
-$ forge snapshot
+bash scripts/counter-sponsored.sh
 ```
+- You'll find the transaction output saved at `scripts/counter-sponsored.json`.
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Check [here](https://github.com/ithacaxyz/odyssey-examples/tree/main/chapter1/simple-7702) for a step-by-step walkthrough example with EIP-7702.
