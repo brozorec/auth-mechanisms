@@ -54,7 +54,7 @@ async function callCounterSponsored(contract) {
     const tx = await buildAndPrepareTx(bob, operation);
 
     // Alice signs only the auth entry
-    tx.operations[0].auth = signAuths([alice], tx.operations[0].auth);
+    tx.operations[0].auth = await signAuths([alice], tx.operations[0].auth);
 
     // then Bob signs the tx and sends it (pays for it)
     tx.sign(bob);
