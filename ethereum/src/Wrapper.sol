@@ -5,8 +5,7 @@ import {Counter} from "./Counter.sol";
 
 contract Wrapper {
     function crossCallIncrement(address counter) public {
-        //address owner = Counter(counter).owner();
-        //require(owner == msg.sender, "not an owner");
+        // will fail
         Counter(counter).increment();
     }
 }

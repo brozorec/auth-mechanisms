@@ -10,7 +10,6 @@ contract Counter {
     }
 
     function increment() public {
-        //require(owner == tx.origin, "not an owner");
         require(owner == msg.sender, "not an owner");
         counter++;
     }
