@@ -317,6 +317,14 @@ interface VmSafe {
         bytes revertData;
     }
 
+    /// An EIP-2930 access list item.
+    struct AccessListItem {
+        // The address to be added in access list.
+        address target;
+        // The storage keys to be added in access list.
+        bytes32[] storageKeys;
+    }
+
     // ======== Crypto ========
 
     /// Derives a private key from the name, labels the account with that name, and returns the wallet.
@@ -717,6 +725,43 @@ interface VmSafe {
         external
         returns (address deployedAddress);
 
+    /// Deploys a contract from an artifact file. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    /// Additionally accepts `msg.value`.
+    function deployCode(string calldata artifactPath, uint256 value) external returns (address deployedAddress);
+
+    /// Deploys a contract from an artifact file. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    /// Additionally accepts abi-encoded constructor arguments and `msg.value`.
+    function deployCode(string calldata artifactPath, bytes calldata constructorArgs, uint256 value)
+        external
+        returns (address deployedAddress);
+
+    /// Deploys a contract from an artifact file, using the CREATE2 salt. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    function deployCode(string calldata artifactPath, bytes32 salt) external returns (address deployedAddress);
+
+    /// Deploys a contract from an artifact file, using the CREATE2 salt. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    /// Additionally accepts abi-encoded constructor arguments.
+    function deployCode(string calldata artifactPath, bytes calldata constructorArgs, bytes32 salt)
+        external
+        returns (address deployedAddress);
+
+    /// Deploys a contract from an artifact file, using the CREATE2 salt. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    /// Additionally accepts `msg.value`.
+    function deployCode(string calldata artifactPath, uint256 value, bytes32 salt)
+        external
+        returns (address deployedAddress);
+
+    /// Deploys a contract from an artifact file, using the CREATE2 salt. Takes in the relative path to the json file or the path to the
+    /// artifact in the form of <path>:<contract>:<version> where <contract> and <version> parts are optional.
+    /// Additionally accepts abi-encoded constructor arguments and `msg.value`.
+    function deployCode(string calldata artifactPath, bytes calldata constructorArgs, uint256 value, bytes32 salt)
+        external
+        returns (address deployedAddress);
+
     /// Returns true if the given path points to an existing entity, else returns false.
     function exists(string calldata path) external view returns (bool result);
 
@@ -1083,8 +1128,18 @@ interface VmSafe {
         external
         returns (SignedDelegation memory signedDelegation);
 
+    /// Sign an EIP-7702 authorization and designate the next call as an EIP-7702 transaction for specific nonce
+    function signAndAttachDelegation(address implementation, uint256 privateKey, uint64 nonce)
+        external
+        returns (SignedDelegation memory signedDelegation);
+
     /// Sign an EIP-7702 authorization for delegation
     function signDelegation(address implementation, uint256 privateKey)
+        external
+        returns (SignedDelegation memory signedDelegation);
+
+    /// Sign an EIP-7702 authorization for delegation for specific nonce
+    function signDelegation(address implementation, uint256 privateKey, uint64 nonce)
         external
         returns (SignedDelegation memory signedDelegation);
 
@@ -1618,6 +1673,22 @@ interface VmSafe {
     /// Writes a conditional breakpoint to jump to in the debugger.
     function breakpoint(string calldata char, bool value) external pure;
 
+    /// Returns true if the current Foundry version is greater than or equal to the given version.
+    /// The given version string must be in the format `major.minor.patch`.
+    /// This is equivalent to `foundryVersionCmp(version) >= 0`.
+    function foundryVersionAtLeast(string calldata version) external view returns (bool);
+
+    /// Compares the current Foundry version with the given version string.
+    /// The given version string must be in the format `major.minor.patch`.
+    /// Returns:
+    /// -1 if current Foundry version is less than the given version
+    /// 0 if current Foundry version equals the given version
+    /// 1 if current Foundry version is greater than the given version
+    /// This result can then be used with a comparison operator against `0`.
+    /// For example, to check if the current Foundry version is greater than or equal to `1.0.0`:
+    /// `if (foundryVersionCmp("1.0.0") >= 0) { ... }`
+    function foundryVersionCmp(string calldata version) external view returns (int256);
+
     /// Returns the Foundry version.
     /// Format: <cargo_version>-<tag>+<git_sha_short>.<unix_build_timestamp>.<profile>
     /// Sample output: 0.3.0-nightly+3cb96bde9b.1737036656.debug
@@ -1791,6 +1862,16 @@ interface VmSafe {
     /// Utility cheatcode to set arbitrary storage for given target address.
     function setArbitraryStorage(address target) external;
 
+    /// Utility cheatcode to set arbitrary storage for given target address and overwrite
+    /// any storage slots that have been previously set.
+    function setArbitraryStorage(address target, bool overwrite) external;
+
+    /// Randomly shuffles an array.
+    function shuffle(uint256[] calldata array) external returns (uint256[] memory);
+
+    /// Sorts an array in ascending order.
+    function sort(uint256[] calldata array) external returns (uint256[] memory);
+
     /// Encodes a `bytes` value to a base64url string.
     function toBase64URL(bytes calldata data) external pure returns (string memory);
 
@@ -1808,6 +1889,9 @@ interface VmSafe {
 /// in tests, but it is not recommended to use these cheats in scripts.
 interface Vm is VmSafe {
     // ======== EVM ========
+
+    /// Utility cheatcode to set an EIP-2930 access list for all subsequent transactions.
+    function accessList(AccessListItem[] calldata access) external;
 
     /// Returns the identifier of the currently active fork. Reverts if no fork is currently active.
     function activeFork() external view returns (uint256 forkId);
@@ -1834,6 +1918,12 @@ interface Vm is VmSafe {
 
     /// Sets `block.coinbase`.
     function coinbase(address newCoinbase) external;
+
+    /// Marks the slots of an account and the account address as cold.
+    function cool(address target) external;
+
+    /// Utility cheatcode to mark specific storage slot as cold, simulating no prior read.
+    function coolSlot(address target, bytes32 slot) external;
 
     /// Creates a new fork with the given endpoint and the _latest_ block and returns the identifier of the fork.
     function createFork(string calldata urlOrAlias) external returns (uint256 forkId);
@@ -1955,6 +2045,9 @@ interface Vm is VmSafe {
     /// the primary logic of the original function but is easier to reason about.
     /// If calldata is not a strict match then partial match by selector is attempted.
     function mockFunction(address callee, address target, bytes calldata data) external;
+
+    /// Utility cheatcode to remove any EIP-2930 access list set by `accessList` cheatcode.
+    function noAccessList() external;
 
     /// Sets the *next* call's `msg.sender` to be the input address.
     function prank(address msgSender) external;
@@ -2095,6 +2188,9 @@ interface Vm is VmSafe {
     /// Sets `tx.gasprice`.
     function txGasPrice(uint256 newGasPrice) external;
 
+    /// Utility cheatcode to mark specific storage slot as warm, simulating a prior read.
+    function warmSlot(address target, bytes32 slot) external;
+
     /// Sets `block.timestamp`.
     function warp(uint256 newTimestamp) external;
 
@@ -2140,6 +2236,12 @@ interface Vm is VmSafe {
 
     /// Expects given number of calls to an address with the specified `msg.value`, gas, and calldata.
     function expectCall(address callee, uint256 msgValue, uint64 gas, bytes calldata data, uint64 count) external;
+
+    /// Expects the deployment of the specified bytecode by the specified address using the CREATE opcode
+    function expectCreate(bytes calldata bytecode, address deployer) external;
+
+    /// Expects the deployment of the specified bytecode by the specified address using the CREATE2 opcode
+    function expectCreate2(bytes calldata bytecode, address deployer) external;
 
     /// Prepare an expected anonymous log with (bool checkTopic1, bool checkTopic2, bool checkTopic3, bool checkData.).
     /// Call this function, then emit an anonymous event, then call a function. Internally after the call, we check if
