@@ -5,10 +5,6 @@ use soroban_sdk::{contract, contractclient, contractimpl, Address, Env};
 #[contractclient(name = "CounterClient")]
 pub trait Counter {
     fn increment(e: &Env);
-
-    //fn get_counter(e: &Env) -> u32;
-
-    //fn get_owner(e: &Env) -> Address;
 }
 
 #[contract]

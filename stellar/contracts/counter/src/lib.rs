@@ -27,10 +27,6 @@ impl CounterContract {
         e.storage().instance().set(&COUNTER, &counter);
     }
 
-    pub fn get_owner(e: Env) -> Address {
-        e.storage().instance().get(&OWNER).expect("owner not set")
-    }
-
     pub fn get_counter(e: Env) -> u32 {
         e.storage().instance().get(&COUNTER).unwrap_or_default()
     }
