@@ -27,6 +27,13 @@ try {
     alice,
   );
   saveContractAddr(wrapper, "wrapper");
+
+  const wrapperAuth = await deployContract(
+    `${import.meta.dirname}/../target/wasm32-unknown-unknown/release/wrapper_auth.wasm`,
+    [],
+    alice,
+  );
+  saveContractAddr(wrapperAuth, "wrapper_auth");
 } catch (error) {
   console.error(error);
 }

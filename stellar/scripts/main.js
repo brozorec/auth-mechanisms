@@ -106,6 +106,25 @@ async function callWrapper(contract, nestedContract) {
   return await submitTx(tx);
 }
 
+async function callWrapperAuth(contract, nestedContract) {
+  const operation = Operation.invokeContractFunction({
+    function: "cross_call_increment",
+    args: [addrToScVal(nestedContract)],
+    contract,
+  });
+
+  const tx = await buildAndPrepareTx(bob, operation);
+  tx.operations[0].auth = await signAuths([alice], tx.operations[0].auth);
+
+  // then Bob signs the tx and sends it (pays for it)
+  tx.sign(bob);
+  saveTxData(tx, "wrapper-auth");
+
+  console.log("submitting tx callWrapperAuth ...");
+  return await submitTx(tx);
+}
+
+
 try {
   const counter = readContractAddr("counter");
   await callCounter(counter);
@@ -116,6 +135,9 @@ try {
 
   const wrapper = readContractAddr("wrapper");
   await callWrapper(wrapper, counter);
+
+  const wrapperAuth = readContractAddr("wrapper_auth");
+  await callWrapperAuth(wrapperAuth, counter);
 } catch (error) {
   console.error(error);
 }

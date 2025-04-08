@@ -9,11 +9,11 @@ pub struct CounterContract;
 
 #[contractimpl]
 impl CounterContract {
-    pub fn __constructor(e: Env, owner: Address) {
+    pub fn __constructor(e: &Env, owner: Address) {
         e.storage().instance().set(&OWNER, &owner);
     }
 
-    pub fn increment(e: Env) {
+    pub fn increment(e: &Env) {
         let owner: Address = e
             .storage()
             .instance()
@@ -27,7 +27,17 @@ impl CounterContract {
         e.storage().instance().set(&COUNTER, &counter);
     }
 
-    pub fn get_counter(e: Env) -> u32 {
+    pub fn get_counter(e: &Env) -> u32 {
         e.storage().instance().get(&COUNTER).unwrap_or_default()
+    }
+
+    pub fn get_owner(e: &Env) -> Address {
+        let owner: Address = e
+            .storage()
+            .instance()
+            .get(&OWNER)
+            .expect("owner must be set");
+
+        owner
     }
 }
