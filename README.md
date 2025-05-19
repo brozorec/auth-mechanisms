@@ -2,7 +2,7 @@
 
 **A comparative study of Ethereum, Stellar Soroban and Solana**
 
-__This repository contains the companion code for the [Who Can Sign What: How Blockchains Handle Authorization](https://brozorec.github.io/post/auth-mechanisms/).__
+_This repository contains the companion code for the [Who Can Sign What: How Blockchains Handle Authorization](https://brozorec.github.io/post/auth-mechanisms/)._
 
 ## Overview
 
